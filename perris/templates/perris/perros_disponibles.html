@@ -1,0 +1,33 @@
+{% extends 'perris/base.html' %}
+{% block content %}
+<div class="container">
+
+  
+  <h1 class="animated fadeInLeft titulo-general">Perros Rescatados</h1>
+  <div class="row">
+    
+    {% for perro in perros %}
+    <div class="col-12 col-md-6 col-lg-6">
+      <div class="card tarjeta-perro animated bounceInUp">
+        {% if perro.fotografia_perro %}
+        <img src="{{perro.fotografia_perro.url}}" class="img-responsive card-img-top">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{perro.nombre_perro}}</h5>
+          <p class="card-text">{{ perro.descripcion }}</p>
+          <button class="btn btn btn-outline-success ">Estado : {{perro.estado}}</button>
+
+          <a class="btn btn btn-success" href="{% url 'register' %}">Adoptar</a>
+        </div>
+      </div>
+    </div>
+    
+    {% endfor %}
+    
+
+  </div>
+
+
+  
+</div>
+{% endblock %}

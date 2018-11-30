@@ -1,0 +1,13 @@
+{% extends 'perris/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ perro.nombre_perro }}</h1>
+    {% if perro.fotografia_perro %}
+    <img style="width: 50%;" src="{{perro.fotografia_perro.url}}" class="img-responsive">
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'edit_post_perro' pk=perro.pk %}">Modificar</a>
+    <a class="btn btn-danger" href="{% url 'delete_post_perro' pk=perro.pk %}">Eliminar</a>
+    <a class="btn btn-dark" href="{% url 'adm.inicio' %}">Volver</a>
+</div>
+{% endblock %}

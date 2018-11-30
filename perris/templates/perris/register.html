@@ -1,0 +1,63 @@
+{% extends 'perris/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <title>Registro </title>
+    {% load static %} 
+
+</head>
+<body id= "registroF" style="background-image:url(/media/regis.jpg) ">
+
+    <form action="" method="POST" class="credenciales">
+            <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <h2>Registrar Usuario</h2>
+        {% csrf_token %}
+
+      
+        {{ form.as_p }}
+
+        <aria-label for="txtRegion">Region</aria-label>
+        <br/>
+        <select id="txtRegion" oninput="selectCity()">  
+            <option>-Seleccione Region-</option>     
+        </select>
+        <br/>
+        <br />
+        <aria-label for="txtCity">Ciudad</aria-label>
+        <br/>
+        <select id="txtCity">
+        <option>--</option>  
+
+        </select>
+        <br/>
+        <br/>
+        <aria-label for="txtVivienda">Tipo de Vivienda:</aria-label>
+        <br/>
+        <select id="txtVivienda">
+            <option>Casa con patio Grande</option>
+            <option>Casa con patio pequeño</option>
+            <option>Casa sin patio</option>
+            <option>Departamento</option>
+        </select>
+
+        <input type="submit" value="Registrar" class="btningresar">
+
+        <script src="{% static 'js/region.js' %}"></script>
+
+      
+
+    </form>
+    
+     <div id="aviso"> {{ mensaje }} </div> 
+
+    
+     
+
+</body>
+
+{% endblock %}

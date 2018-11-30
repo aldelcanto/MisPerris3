@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load pwa %}
+{% load staticfiles %}
+<html>
+
+<head>
+    {% progressive_web_app_meta %}
+  <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <!--CSS STATICO-->
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <!--Fonts ESTÁTICO-->
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/style.css' %}">
+  <!--Google Font-->
+  <link href="https://fonts.googleapis.com/css?family=Basic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <!--Iconos -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+    crossorigin="anonymous">
+</head>
+<!--Boostrap Validator-->
+<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.1.3/dist/bootstrap-validate.js"></script>
+</head>
+
+
+<body>
+  <header>
+
+    <!-- Barra de navegacion-->
+
+    
+    <nav class="navbar  navbar-expand-lg navbar-light " style="background-color: #89D3B8;">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <section class="claseLogo">
+      <img class="imagen-logo rounded" src="/media/logo.png" alt="imagen-logo">  
+      </section>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+        <ul class="navbar-nav mr-auto barra ">
+
+          <li class="nav-item active">
+            <a class="nav-link text-white" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'perros_disponibles' %}"><i class="fa fa-bars"></i> Lista de Perros Rescatados</a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <p><a class="nav-link text-white " href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar
+                Sesión</a></p>
+            {% else %}
+            <a class="nav-link text-white " href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+              |
+              Registrar</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            {% if user.username == "admin" %}
+            <a class="nav-link text-white" href="{% url 'adm.inicio' %}"><i class="material-icons" style="font-size:20px;">cloud</i> Administrar</a>
+            {% else %}
+
+            {% endif %}
+
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- <div class="page-header">
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div> -->
+  <div class="a">
+    <div class="row">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
+  </div>
+</body>
+
+
+
+</html>

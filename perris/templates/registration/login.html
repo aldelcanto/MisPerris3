@@ -1,0 +1,68 @@
+ {% extends 'perris/base.html' %} {% block content %}
+<div class="container">
+	<div class="animated fadeInLeft titulo-general">
+		<div class="col-12 col-mb-6 col-lg-12" style=background:rgb(81,170,81) >
+			<div class="card card-login" style=background:rgb(102,206,102) >
+				<br>
+				<br>
+				<div class="card-header titulo-register ">
+					<br>
+					<br>
+					<h1 class="card-title animated flipInY">Iniciar Sesión</h1>
+				</div>
+				<div class="card-body">
+					<!--Mensaje de Error-->
+					{% if form.errors %}
+					<div class="alert alert-danger" role="alert">
+						El nombre de usuario que ingresaste no coincide con ninguna cuenta. Regístrate para crear una cuenta.
+					</div>
+					{% endif %}
+					<form method="POST" class="needs-validation" novalidate>
+						{% csrf_token %}
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+
+							</div>
+							<input type="text" class="form-control" id="validationCustom01" placeholder="Nombre de Usuario" name="username" required>
+
+							<div class="valid-feedback">
+								Completado
+							</div>
+						</div>
+						<br>
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+							</div>
+							<input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Contraseña" required>
+							<div class="valid-feedback">
+								Completado
+							</div>
+
+
+
+						</div>
+						<div class="form-group">
+							<br>
+
+							<label>No estas registrado?</label>
+							<a href="{% url 'register' %}">Registrate!</a>
+							<input type="submit" value="Ingresar" class="btn btn-primary" name="">
+						</div>
+
+						<div>
+							<a name="" id="" class="btn btn-outline-dark text-center mr-2 mt-2" href="{% url 'social:begin' 'github' %}" role="button" style="background-color: #d3d4d7">
+								<i class="fab fa-github mr-2" style="font-size: 30px"></i>Ingresar con GitHub</a>
+							<a name="" id="" class="btn btn-outline-primary text-center mr-2 mt-2" href="{% url 'social:begin' 'facebook' %}" role="button"  style="background-color: #d3d4d7">
+								<i class="fab fa-facebook mr-2" style="font-size: 30px"></i>Ingresar con Facebook</a>
+							<a name="" id="" class="btn btn-outline-primary text-center mr-2 mt-2" href="{% url 'social:begin' 'google-oauth2' %}" role="button"  style="background-color: #d3d4d7">
+								<i class="fab fa-google mr-2" style="font-size: 30px"></i>Ingresar con google</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

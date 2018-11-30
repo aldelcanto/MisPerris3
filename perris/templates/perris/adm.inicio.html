@@ -1,0 +1,45 @@
+{% extends 'perris/base.html' %}
+{% block content %}
+<div class="container">
+	{% if user.is_authenticated %}
+      
+       {% if user.username == "admin" %}
+         <h1 class="titulo-general">Acesso Administrador <!--real {{user.username}} --> </h1>
+        {% else  %}
+         <h1 class="titulo-general">Acceso Usuario<!-- realmente eres-->{{user.username}} </h1>
+         {% endif %}
+      <a href="{% url 'new_post_perro' %}" class="btn btn-success text-uppercase" >Nuevo Post</a>
+      {% endif %}
+	
+    <div class="row" >
+    
+          {% for perro in perros %}
+          <div class="col-12 col-md-6 col-lg-6">
+            <div class="card tarjeta-perro">
+               {% if perro.fotografia_perro %}
+                <img  src="{{perro.fotografia_perro.url}}" class="img-responsive card-img-top" >
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{perro.nombre_perro|upper}}</h5>
+              <p class="card-text">{{ perro.descripcion }}</p>
+              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+              <!-- <a href="{% url 'new_post_perro' %}" class="btn btn-success" >Nuevo Post</a>
+				<a href="{% url 'detail_post_perro' pk=perro.pk %}"class="btn btn-primary">Ver Mas Detalles</a> -->
+				<div class="dropdown">
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   Opciones
+				  </button>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				   <!--  <a class="dropdown-item" href="#">Modificar</a> -->
+				    <a class="btn btn-primary dropdown-item" href="{% url 'edit_post_perro' pk=perro.pk %}">Modificar</a>
+				    <a class="dropdown-item btn btn-danger" href="{% url 'delete_post_perro' pk=perro.pk %}">Eliminar</a>
+				  </div>
+				</div>
+            </div>
+          </div>
+      </div>
+    
+         {% endfor %}
+</div>
+</div>
+{% endblock %}
